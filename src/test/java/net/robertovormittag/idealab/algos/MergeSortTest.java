@@ -44,8 +44,6 @@ public class MergeSortTest {
     }
 
 
-
-
     @Test
     public void arr6MultiThreadedTest() {
         timer.reset();

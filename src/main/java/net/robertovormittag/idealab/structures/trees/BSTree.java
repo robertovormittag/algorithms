@@ -5,6 +5,8 @@ import net.robertovormittag.idealab.structures.nodes.BSTNode;
 public class BSTree {
 
     private BSTNode root;
+    // getter
+    public BSTNode getRoot() { return root; }
 
     public BSTree() { root = null; }
 
@@ -60,9 +62,11 @@ public class BSTree {
 
         BSTNode nodeToBeRemoved = root;
         BSTNode parent = null;
+        BSTNode child = null;
+
         boolean found = false;
 
-
+        // set nodeToBeRemoved and parent
         while (!found && nodeToBeRemoved != null) {
             int comp = nodeToBeRemoved.getData().compareTo(data);
             if (comp == 0) {
@@ -89,25 +93,27 @@ public class BSTree {
         // proceed with removal
 
         // is there an empty subtree?
+        // set child
         if (nodeToBeRemoved.getLeft() == null ||
                 nodeToBeRemoved.getRight() == null) {
-            BSTNode newChild;
+
+            // set child
             if (nodeToBeRemoved.getLeft() == null) {
-                newChild = nodeToBeRemoved.getRight();
+                child = nodeToBeRemoved.getRight();
             } else {
-                newChild = nodeToBeRemoved.getLeft();
+                child = nodeToBeRemoved.getLeft();
             }
+
             // found in root
             if (parent == null) {
-                root = newChild;
+                root = child;
             } else if (parent.getLeft() == nodeToBeRemoved) {
-                parent.setLeft(newChild);
+                parent.setLeft(child);
             } else {
-                parent.setRight(newChild);
+                parent.setRight(child);
             }
             return;
         }
-
 
         // neither subtree is empty
         // find smallest element of the right subtree

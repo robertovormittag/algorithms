@@ -13,6 +13,7 @@ public class GenericHashSet<E> implements GenericSet<E> {
     private Entry<E>[] buckets;
 
     private int size;
+    @Override
     public int size() {
         return size;
     }

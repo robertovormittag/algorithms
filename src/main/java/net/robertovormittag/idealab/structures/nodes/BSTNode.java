@@ -1,3 +1,4 @@
+
 package net.robertovormittag.idealab.structures.nodes;
 
 public class BSTNode {
@@ -44,7 +45,6 @@ public class BSTNode {
         }
 
         // if data is greater than set right
-        // if data is less than set left
         if (comp > 0) {
             if (right == null) {
                 right = newNode;
