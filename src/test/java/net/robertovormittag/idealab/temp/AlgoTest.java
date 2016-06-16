@@ -10,6 +10,58 @@ public class AlgoTest {
 
     private Algo algo;
 
+    private static void arraySplit(int arr[]) {
+
+        int len = arr.length;
+        int mid = arr.length / 2;
+
+        int[] left = new int[mid];
+        int[] right = new int[len-mid];
+
+        // copy left
+        for (int index=0; index < mid; index++) {
+            left[index] = arr[index];
+        }
+        int j = 0;
+        // copy right
+        for (int index=mid; index < len; index++) {
+            right[j] = arr[index];
+            j++;
+        }
+        // loop
+        for (int i : left) {
+            System.out.print("[" + i + "]");
+        }
+        System.out.println();
+        // loop
+        for (int i : right) {
+            System.out.print("[" + i + "]");
+        }
+        System.out.println();
+    }
+    @Test
+    public void test2() {
+        int[] arr = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+        arraySplit(arr);
+    }
+
+    private static int recursive(int n) {
+
+        int result;
+
+        // you need something to STOP the recursion
+        if (n == 0) result = 1;
+        else result = n - recursive(n - 1);
+        System.out.println(result);
+
+        return result;
+    }
+    @Test
+    public void test1() {
+        recursive(3);
+    }
+
+
     @Before
     public void setUp() throws Exception {
         algo = new Algo();
@@ -19,6 +71,7 @@ public class AlgoTest {
     public void tearDown() throws Exception {
         algo = null;
     }
+
 
     @Test
     public void testSumArray() {

@@ -2,7 +2,9 @@
 package net.robertovormittag.idealab.algos.numbers;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Fibonacci {
 
@@ -36,6 +38,7 @@ public class Fibonacci {
 
     /**
      * performs in exponential time
+     *
      */
     public static int binaryRecursion(int n) {
         int result;
@@ -50,5 +53,43 @@ public class Fibonacci {
         COUNTER++;
         return result;
     }
+
+
+    /**
+     *
+     * Dynamic programming solution
+     * (memoization or top-down approach
+     *
+     * Store already calculated values
+     * to avoid duplicating efforts
+     *
+     */
+    public static int dynamicProgramming(int n) {
+
+        // map to store results
+        Map<Integer, Integer> computedValues = new HashMap<>();
+        // the two base cases
+        computedValues.put(1, 1);
+        computedValues.put(2, 1);
+
+        return dynamicProgramming(n, computedValues);
+    }
+
+    private static int dynamicProgramming(int n, Map<Integer,Integer> computedValues) {
+
+        if (computedValues.containsKey(n)) return computedValues.get(n);
+
+        computedValues.put(n-1, dynamicProgramming(n-1, computedValues));
+        computedValues.put(n-2, dynamicProgramming(n-2, computedValues));
+
+        int result = computedValues.get(n-1) + computedValues.get(n-2);
+        computedValues.put(n, result);
+
+        NUMBERS.add(result);
+        COUNTER++;
+
+        return result;
+    }
+
 
 }
