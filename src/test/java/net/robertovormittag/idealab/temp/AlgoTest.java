@@ -10,6 +10,38 @@ public class AlgoTest {
 
     private Algo algo;
 
+
+    public char[] reverseString(char[] str, int start, int end) {
+
+        if (start < end) {
+            swap(str, start, end);
+            reverseString(str, start+1, end-1);
+        }
+
+        return str;
+
+    }
+    private void swap(char[] str, int start, int end) {
+
+        char temp = str[start];
+        str[start] = str[end];
+        str[end] = temp;
+    }
+    @Test
+    public void test3() {
+
+        String str = "hello";
+        char[] reversed = reverseString(str.toCharArray(), 0, str.length()-1);
+        for (char c : reversed) {
+            System.out.print(c);
+        }
+        System.out.println();
+
+    }
+
+
+
+
     private static void arraySplit(int arr[]) {
 
         int len = arr.length;
