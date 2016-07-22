@@ -7,9 +7,7 @@ import java.util.logging.Logger;
 public class SimpleHashSet implements SimpleSet {
 
     private static final Logger log = Logger.getLogger(SimpleHashSet.class.getName());
-    /**
-     *
-     */
+
     private static class Entry {
         Object key;
         Entry next;
@@ -74,7 +72,7 @@ public class SimpleHashSet implements SimpleSet {
     public boolean add(Object element) {
 
         int index = hashFunction(element.hashCode());
-        log.info(element.toString() + " hashCode=" + element.hashCode() + " index=" + index);
+        //log.info(element.toString() + " hashCode=" + element.hashCode() + " index=" + index);
         Entry current = buckets[index];
 
         while (current != null) {
@@ -173,6 +171,7 @@ public class SimpleHashSet implements SimpleSet {
 
 
         public SimpleHashSetIterator() {
+
             currentEntry = null;
             previousEntry = null;
             currentBucket = -1;
@@ -246,40 +245,6 @@ public class SimpleHashSet implements SimpleSet {
             // return the element in the current node
             return currentEntry.key;
 
-        }
-
-        /**
-         * Removes from the underlying collection the last element returned
-         * by this iterator (optional operation).  This method can be called
-         * only once per call to {@link #next}.  The behavior of an iterator
-         * is unspecified if the underlying collection is modified while the
-         * iteration is in progress in any way other than by calling this
-         * method.
-         *
-         * @throws UnsupportedOperationException if the {@code remove}
-         *                                       operation is not supported by this iterator
-         * @throws IllegalStateException         if the {@code next} method has not
-         *                                       yet been called, or the {@code remove} method has already
-         *                                       been called after the last call to the {@code next}
-         *                                       method
-         * @implSpec The default implementation throws an instance of
-         * {@link UnsupportedOperationException} and performs no other action.
-         */
-        @Override
-        public void remove() {
-
-            if (previousEntry != null && previousEntry.next == currentEntry) {
-                previousEntry.next = currentEntry.next;
-            }
-            else if (previousBucket < currentBucket) {
-                buckets[currentBucket] = currentEntry.next;
-            }
-            else {
-                throw new IllegalStateException();
-            }
-
-            currentEntry = previousEntry;
-            currentBucket = previousBucket;
         }
 
     }

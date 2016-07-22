@@ -7,16 +7,6 @@ import java.util.logging.Logger;
 
 import static org.junit.Assert.*;
 
-/**
- * toString()
- *
- * [1] banana -> apple
- * [2] mango
- * [3] kiwi -> papaya
- *
- *
- */
-
 public class SimpleHashSetTest {
 
     private static final Logger log = Logger.getLogger(SimpleHashSetTest.class.getName());
@@ -33,17 +23,14 @@ public class SimpleHashSetTest {
         fruits.add("banana");
         fruits.add("orange");
 
-
         numbers = new SimpleHashSet(128);
+
         numbers.add(new Integer(128));
         numbers.add(new Integer(256));
     }
 
     @AfterClass
     public static void tearDown() throws Exception {
-
-        log.info("Final size of set is: " + fruits.size());
-        log.info("Final size of set is: " + numbers.size());
 
         Iterator iter = fruits.iterator();
         Iterator iter2 = numbers.iterator();
@@ -120,16 +107,5 @@ public class SimpleHashSetTest {
         assertFalse(fruits.contains("apple"));
     }
 
-
-    @Test
-    public void testIterator() throws Exception {
-
-        Iterator iter = fruits.iterator();
-        while(iter.hasNext()) {
-            if (iter.next().equals("banana")) {
-                iter.remove();
-            }
-        }
-    }
 
 }
